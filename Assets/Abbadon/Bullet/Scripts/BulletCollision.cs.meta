@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 971ff86e7efda3a4ebac036c49838275
+timeCreated: 1515989609
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - bulletImpactPrefab_Metal: {fileID: 100002, guid: caa8bd0d2623acf4d915f16e0ab71218,
+      type: 2}
+  - bulletImpactPrefab_Wood: {fileID: 100002, guid: 5d73f72c6be7d0440bbc9c87d4f718c0,
+      type: 2}
+  - bulletImpactPrefab_Concrete: {fileID: 100006, guid: 9e95c7b2183a4f345aaf86846f8f1918,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

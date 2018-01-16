@@ -3,9 +3,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class BulletSpawnScript : MonoBehaviour {
     public GameObject bulletPrefab;
-    public Transform bulletSpawn;
     public ParticleSystem muzzleFlashParticles;
 
     // Use this for initialization
@@ -32,11 +31,8 @@ public class PlayerController : MonoBehaviour {
         // Create the Bullet from the Bullet Prefab
         var bullet = (GameObject)Instantiate(
             bulletPrefab,
-            bulletSpawn.position,
-            bulletSpawn.rotation);
-
-        // Add velocity to the bullet
-        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward.normalized * 10;
+            transform.position,
+            transform.rotation);
 
         muzzleFlashParticles.Play();
 
