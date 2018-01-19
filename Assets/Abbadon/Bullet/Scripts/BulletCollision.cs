@@ -24,8 +24,6 @@ public class BulletCollision : MonoBehaviour
         Vector3 vec = transform.position - PrevPosition;
         RaycastHit[] rayHits = Physics.RaycastAll(PrevPosition,(vec).normalized,vec.magnitude);
 
-        Debug.DrawLine(PrevPosition,transform.position,Color.red,2,false);
-
         foreach(RaycastHit rayhit in rayHits)
         {
             GameObject bulletImpactPrefab;
@@ -53,12 +51,10 @@ public class BulletCollision : MonoBehaviour
                 }
             }
 
-            Debug.Log("BulletCollision: Bullet Hit " + tag);
-
             var impact = (GameObject) Instantiate(
                         bulletImpactPrefab,
                         rayhit.point,
-                        Quaternion.Euler(rayhit.normal) * bulletImpactPrefab.transform.rotation
+                        Quaternion.LookRotation(rayhit.normal)
             );
 
             // Destroy in 3 sec
