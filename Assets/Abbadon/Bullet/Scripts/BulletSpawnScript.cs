@@ -6,16 +6,18 @@ using UnityEngine;
 public enum FireRateType
 {
     Auto,
-    Semi,
-    Single
+    Semi
 }
 
 public class BulletSpawnScript : MonoBehaviour {
     public GameObject BulletPrefab;
-    public Animation WeaponFireAnimation;
     public ParticleSystem MuzzleFlashParticles;
-    public float FireDelayMillis = 100;
+    public float FireDelayMillis = 125;
     public FireRateType FireRateType;
+    public float MinimumBulletSpread = 0.8f;
+    public float MaximumBulletSpread = 1.8f;
+    private float CurrentBulletSpread;
+    private const float BulletSpreadRatio = 0.1f;
     private float LastFireMillis;
     private bool IsTriggerHeld;
 
@@ -23,11 +25,20 @@ public class BulletSpawnScript : MonoBehaviour {
     void Start () {
         MuzzleFlashParticles.Stop();
         LastFireMillis = 0;
+        CurrentBulletSpread = MinimumBulletSpread;
         IsTriggerHeld = false;
+        UnityEngine.Random.InitState((int)System.Environment.TickCount);
+
+        // Assert
+        Debug.Assert(MinimumBulletSpread <= MaximumBulletSpread);
     }
 
     private void FixedUpdate()
     {
+        if(IsTriggerHeld && CurrentBulletSpread < MaximumBulletSpread)
+            CurrentBulletSpread+=BulletSpreadRatio;
+        else if(!IsTriggerHeld && CurrentBulletSpread > MinimumBulletSpread)
+            CurrentBulletSpread-=BulletSpreadRatio * 3;
     }
 
     // Update is called once per frame
@@ -40,13 +51,14 @@ public class BulletSpawnScript : MonoBehaviour {
                 if (Input.GetButton("Fire1") && LastFireMillis <= 0)
                 {
                     Fire();
-                    WeaponFireAnimation.Play();
+                    IsTriggerHeld = true;
                     LastFireMillis = FireDelayMillis;
                 }
-                else if (LastFireMillis <= 0 && WeaponFireAnimation.isPlaying)
+                else if(Input.GetButtonUp("Fire1"))
                 {
-                    WeaponFireAnimation.Stop();
+                    IsTriggerHeld = false;
                 }
+
                 break;
             }
             case FireRateType.Semi: 
@@ -55,27 +67,32 @@ public class BulletSpawnScript : MonoBehaviour {
                 {
                     IsTriggerHeld = true;
                     Fire();
-                    WeaponFireAnimation.Play();
                 }
                 else if(Input.GetButtonUp("Fire1"))
                 {
                     IsTriggerHeld = false;
-                    WeaponFireAnimation.Stop();
                 }
 
                 break;
             }
             default: break;
         }
-    }   
+    }
 
     void Fire()
     {
+        float xSpread = UnityEngine.Random.Range(-1f, 1f) + 0.01f;
+        float ySpread = UnityEngine.Random.Range(-1f, 1f) + 0.01f;
+        float zSpread = UnityEngine.Random.Range(-1f, 1f) + 0.01f;
+
+        //normalize the spread vector to keep it conical
+        Vector3 spread = new Vector3(xSpread, ySpread, zSpread).normalized * CurrentBulletSpread;
+
         // Create the Bullet from the Bullet Prefab
         var bullet = (GameObject)Instantiate(
             BulletPrefab,
             transform.position,
-            transform.rotation);
+            Quaternion.Euler(spread) * transform.rotation);
 
         MuzzleFlashParticles.Play();
 
