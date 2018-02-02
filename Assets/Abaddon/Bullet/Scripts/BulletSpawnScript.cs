@@ -9,6 +9,7 @@ public enum FireRateType
     Semi
 }
 
+[RequireComponent(typeof(AudioSource))]
 public class BulletSpawnScript : MonoBehaviour {
     public GameObject BulletPrefab;
     public ParticleSystem MuzzleFlashParticles;
@@ -20,6 +21,8 @@ public class BulletSpawnScript : MonoBehaviour {
     private const float BulletSpreadRatio = 0.1f;
     private float LastFireMillis;
     private bool IsTriggerHeld;
+    public AudioClip BulletFireAudio;
+    private AudioSource ShootAudioPlayer;
 
     // Use this for initialization
     void Start () {
@@ -28,6 +31,10 @@ public class BulletSpawnScript : MonoBehaviour {
         CurrentBulletSpread = MinimumBulletSpread;
         IsTriggerHeld = false;
         UnityEngine.Random.InitState((int)System.Environment.TickCount);
+
+        ShootAudioPlayer = GetComponent<AudioSource>();
+        ShootAudioPlayer.clip = BulletFireAudio;
+        ShootAudioPlayer.loop = false;
 
         // Assert
         Debug.Assert(MinimumBulletSpread <= MaximumBulletSpread);
@@ -95,6 +102,7 @@ public class BulletSpawnScript : MonoBehaviour {
             Quaternion.Euler(spread) * transform.rotation);
 
         MuzzleFlashParticles.Play();
+        ShootAudioPlayer.Play();
 
         // Destroy the bullet after 5 seconds or later if it collides
         Destroy(bullet, 5.0f);

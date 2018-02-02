@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class BulletCollision : MonoBehaviour 
 {
     public GameObject bulletImpactPrefab_Metal;
@@ -51,7 +52,7 @@ public class BulletCollision : MonoBehaviour
                 }
             }
 
-            var impact = (GameObject) Instantiate(
+            GameObject impact = (GameObject) Instantiate(
                         bulletImpactPrefab,
                         rayhit.point,
                         Quaternion.LookRotation(rayhit.normal)
