@@ -42,7 +42,7 @@ public class GrenadeScript : MonoBehaviour {
 	
 	private void Explode()
 	{
-		var explosion = (GameObject)Instantiate(
+		Instantiate(
 		ExplosionPrefab,
 		transform.position,
 		Quaternion.identity);
