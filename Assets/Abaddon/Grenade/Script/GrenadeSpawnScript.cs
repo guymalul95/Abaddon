@@ -8,6 +8,7 @@ public class GrenadeSpawnScript : MonoBehaviour {
     public GameObject GrenadePrefab;
     public float FireDelayMillis = 5000;
     public float ThrowForce;
+    public string ActionButton;
     private float LastFireMillis;
 
     // Use this for initialization
@@ -20,7 +21,7 @@ public class GrenadeSpawnScript : MonoBehaviour {
 
         LastFireMillis -= Time.deltaTime * 1000;
 
-        if (Input.GetButton("Fire2") && LastFireMillis <= 0)
+        if (Input.GetButton(ActionButton) && LastFireMillis <= 0)
         {
             LastFireMillis = FireDelayMillis;
             Fire();
