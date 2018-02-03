@@ -58,6 +58,7 @@ public class BulletCollision : MonoBehaviour
                         Quaternion.LookRotation(rayhit.normal)
             );
 
+            impact.transform.parent = rayhit.collider.transform;
             // Destroy in 3 sec
             Destroy(impact, 3.0f);
 

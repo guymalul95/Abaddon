@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class GrenadeSpawnScript : MonoBehaviour {
     public GameObject GrenadePrefab;
     public float FireDelayMillis = 5000;
@@ -14,8 +13,7 @@ public class GrenadeSpawnScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         LastFireMillis = 0;
-    }
-
+	}
     // Update is called once per frame
     void Update () {
 
@@ -27,7 +25,6 @@ public class GrenadeSpawnScript : MonoBehaviour {
             Fire();
         }
     }
-    
 
     void Fire()
     {
