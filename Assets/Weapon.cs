@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public enum FireMode
 {
@@ -8,17 +9,21 @@ public enum FireMode
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(AudioSource))]
 public class Weapon : MonoBehaviour {
 
     public float damage = 10f;
     public float range = 100f;
-    public float fireRate = 15f;
+    public float fireRate = 1.5f;
     public FireMode fireMode = FireMode.Auto;
     public Camera playerCamera;
     public int maxRoundsInClip = 30;
+    public bool weaponEnabled = true;
 
     private float nextTimeToFire = 0;
     private int currentRoundsInClip;
+    private float reloadTime = 2f;
+    private FireMode chosenFireMode;
 
     public ParticleSystem muzzleFlashParticles;
     
@@ -29,6 +34,7 @@ public class Weapon : MonoBehaviour {
     private bool isTriggerHeld;
     private AudioSource shootAudioPlayer;
     private AudioSource emptyAudioPlayer;
+    private AudioSource reloadAudioPlayer;
 
     public GameObject bulletImpactPrefab_Metal;
     public GameObject bulletImpactPrefab_Wood;
@@ -49,7 +55,11 @@ public class Weapon : MonoBehaviour {
         emptyAudioPlayer = audioSources[1];
         emptyAudioPlayer.loop = false;
 
+        reloadAudioPlayer = audioSources[2];
+        reloadAudioPlayer.loop = false;
+
         currentRoundsInClip = maxRoundsInClip;
+        chosenFireMode = fireMode;
 
         bulletSpreadRatio = (maximumBulletSpread - minimumBulletSpread) * 0.1f;
     }
@@ -69,6 +79,7 @@ public class Weapon : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        // fire
         if (Time.time >= nextTimeToFire)
         {
             if (fireMode == FireMode.Auto)
@@ -90,111 +101,119 @@ public class Weapon : MonoBehaviour {
             }
         }
 
+        // release trigger
         if (Input.GetButtonUp("Fire1"))
         {
             isTriggerHeld = false;
         }
 
-        //if (Time.time >= nextTimeToFire)
-        //{
-        //    nextTimeToFire = Time.time + 1f / fireRate;
+        // reload
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Reload();
+        }
 
-        //    switch (fireMode)
-        //    {
-        //        case (FireMode.Auto):
-        //            if (Input.GetButtonDown("Fire1"))
-        //            {
-        //                isTriggerHeld = true;
-        //                Fire();
-        //            }
-        //            else if (Input.GetButtonUp("Fire1"))
-        //            {
-        //                isTriggerHeld = false;
-        //            }
-        //            break;
+        // switch fire mode
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            if (fireMode == FireMode.Auto)
+            {
+                chosenFireMode = FireMode.Semi;
+            }
+            else if (fireMode == FireMode.Semi)
+            {
+                chosenFireMode = FireMode.Auto;
+            }
 
-        //        case (FireMode.Semi):
-        //            if (Input.GetButtonDown("Fire1") && !isTriggerHeld)
-        //            {
-        //                isTriggerHeld = true;
-        //                Fire();
-        //            }
-        //            else if (Input.GetButtonUp("Fire1"))
-        //            {
-        //                isTriggerHeld = false;
-        //            }
-        //            break;
-        //    }
-        //}
-	}
+            fireMode = chosenFireMode;
+        }
+    }
 
     void Fire()
     {
-        if (currentRoundsInClip <= 0)
+        if (weaponEnabled)
         {
-            emptyAudioPlayer.Play();
-        }
-        else
-        {
-            float xSpread = Random.Range(-1f, 1f) + 0.01f;
-            float ySpread = Random.Range(-1f, 1f) + 0.01f;
-            float zSpread = Random.Range(-1f, 1f) + 0.01f;
-
-            Vector3 spread = new Vector3(xSpread, ySpread, zSpread).normalized * currentBulletSpread;
-
-            muzzleFlashParticles.Play();
-            shootAudioPlayer.Play();
-
-            Quaternion rotation = Quaternion.Euler(spread);
-            Matrix4x4 matrix = Matrix4x4.TRS(Vector3.zero, rotation, Vector3.one);
-
-            // rotate from the forward direction
-            Vector3 direction = matrix.MultiplyPoint(playerCamera.transform.forward);
-
-            RaycastHit hit;
-            if (Physics.Raycast(playerCamera.transform.position, direction, out hit, range))
+            if (currentRoundsInClip <= 0)
             {
-                GameObject bulletImpactPrefab = null;
-                string tag = hit.collider.gameObject.tag.ToLower();
-
-                switch (tag)
-                {
-                    case "metal":
-                        {
-                            bulletImpactPrefab = bulletImpactPrefab_Metal;
-                            break;
-                        }
-                    case "wood":
-                        {
-                            bulletImpactPrefab = bulletImpactPrefab_Wood;
-                            break;
-                        }
-                    case "concrete":
-                        {
-                            bulletImpactPrefab = bulletImpactPrefab_Concrete;
-                            break;
-                        }
-                    case "player":
-                        return;
-                }
-
-                Target target = hit.transform.GetComponent<Target>();
-                if (target != null)
-                {
-                    target.TakeDamage(damage);
-                }
-
-                if (bulletImpactPrefab != null)
-                {
-                    GameObject impact = Instantiate(bulletImpactPrefab, hit.point, Quaternion.LookRotation(hit.normal));
-                    impact.transform.parent = hit.collider.transform;
-
-                    // Destroy in 3 sec
-                    Destroy(impact, 2.5f);
-                }
+                fireMode = FireMode.Semi;
+                emptyAudioPlayer.Play();
             }
+            else
+            {
+                float xSpread = Random.Range(-1f, 1f) + 0.01f;
+                float ySpread = Random.Range(-1f, 1f) + 0.01f;
+                float zSpread = Random.Range(-1f, 1f) + 0.01f;
 
-            --currentRoundsInClip;
+                Vector3 spread = new Vector3(xSpread, ySpread, zSpread).normalized * currentBulletSpread;
+
+                muzzleFlashParticles.Play();
+                shootAudioPlayer.Play();
+
+                Quaternion rotation = Quaternion.Euler(spread);
+                Matrix4x4 matrix = Matrix4x4.TRS(Vector3.zero, rotation, Vector3.one);
+
+                // rotate from the forward direction
+                Vector3 direction = matrix.MultiplyPoint(playerCamera.transform.forward);
+
+                RaycastHit hit;
+                if (Physics.Raycast(playerCamera.transform.position, direction, out hit, range))
+                {
+                    GameObject bulletImpactPrefab = null;
+                    string tag = hit.collider.gameObject.tag.ToLower();
+
+                    switch (tag)
+                    {
+                        case "metal":
+                            {
+                                bulletImpactPrefab = bulletImpactPrefab_Metal;
+                                break;
+                            }
+                        case "wood":
+                            {
+                                bulletImpactPrefab = bulletImpactPrefab_Wood;
+                                break;
+                            }
+                        case "concrete":
+                            {
+                                bulletImpactPrefab = bulletImpactPrefab_Concrete;
+                                break;
+                            }
+                        case "player":
+                            return;
+                    }
+
+                    Target target = hit.transform.GetComponent<Target>();
+                    if (target != null)
+                    {
+                        target.TakeDamage(damage);
+                    }
+
+                    if (bulletImpactPrefab != null)
+                    {
+                        GameObject impact = Instantiate(bulletImpactPrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                        impact.transform.parent = hit.collider.transform;
+
+                        Destroy(impact, 2.5f);
+                    }
+                }
+
+                --currentRoundsInClip;
+            }
         }
+    }
+
+    void Reload()
+    {
+        weaponEnabled = false;
+        reloadAudioPlayer.Play();
+        StartCoroutine(ReloadDone());
+    }
+
+    IEnumerator ReloadDone()
+    {
+        yield return new WaitForSeconds(reloadTime);
+        weaponEnabled = true;
+        currentRoundsInClip = maxRoundsInClip;
+        fireMode = chosenFireMode;
     }
 }
