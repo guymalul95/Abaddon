@@ -9,7 +9,8 @@ public class DoorTriggerScript : MonoBehaviour {
     private AudioSource audioSource;
     public AudioClip DoorOpenAudio;
     public AudioClip DoorCloseAudio;
-    private const string PlayerTag = "Player";
+    private const string PlayerTag = "player";
+    private const string EnemyTag = "enemy";
 
     // Use this for initialization
     void Start()
@@ -21,7 +22,13 @@ public class DoorTriggerScript : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (PlayerTag != other.tag) return;
+        switch(other.tag.ToLower())
+        {
+            case PlayerTag:
+            case EnemyTag:
+                break;
+            default: return;
+        }
         animator.ResetTrigger("DoorCloseTrigger");
         animator.SetTrigger("DoorOpenTrigger");
 
@@ -31,7 +38,13 @@ public class DoorTriggerScript : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-        if (PlayerTag != other.tag) return;
+        switch(other.tag.ToLower())
+        {
+            case PlayerTag:
+            case EnemyTag:
+                break;
+            default: return;
+        }
         animator.ResetTrigger("DoorOpenTrigger");
         animator.SetTrigger("DoorCloseTrigger");
 

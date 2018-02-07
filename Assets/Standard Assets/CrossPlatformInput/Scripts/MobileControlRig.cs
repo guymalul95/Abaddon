@@ -4,7 +4,7 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-
+/* 
 namespace UnityStandardAssets.CrossPlatformInput
 {
     [ExecuteInEditMode]
@@ -100,3 +100,4 @@ namespace UnityStandardAssets.CrossPlatformInput
 #endif
     }
 }
+*/
