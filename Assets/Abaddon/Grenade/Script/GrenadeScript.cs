@@ -8,7 +8,7 @@ public enum GrenadeType
 
 public class GrenadeScript : MonoBehaviour {
 
-	public GameObject ExplosionPrefab;
+	public GameObject ExplosionObjectPrefab;
 	public GrenadeType GrenadeType;
     public float GrenadeTimeMillis;
 
@@ -43,7 +43,7 @@ public class GrenadeScript : MonoBehaviour {
 	private void Explode()
 	{
 		Instantiate(
-		ExplosionPrefab,
+		ExplosionObjectPrefab,
 		transform.position,
 		Quaternion.identity);
 
