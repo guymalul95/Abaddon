@@ -5,15 +5,15 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour {
 
     public static bool paused = false;
-    public GameObject Player;
+    public GameObject player;
     public GameObject pauseMenuUI;
     public AudioSource gameBackgroundMusic;
-    private Camera camera;
+    private Camera pauseCamera;
 
     private void Start()
     {
-        camera = GetComponent<Camera>();
-        camera.enabled = false;
+        pauseCamera = GetComponent<Camera>();
+        pauseCamera.enabled = false;
     }
 
     // Update is called once per frame
@@ -33,8 +33,8 @@ public class PauseMenu : MonoBehaviour {
 
     public void Resume()
     {
-        Player.SetActive(true);
-        camera.enabled = false;
+        player.SetActive(true);
+        pauseCamera.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         pauseMenuUI.SetActive(false);
@@ -46,8 +46,8 @@ public class PauseMenu : MonoBehaviour {
 
     void Pause()
     {
-        Player.SetActive(false);
-        camera.enabled = true;
+        player.SetActive(false);
+        pauseCamera.enabled = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         pauseMenuUI.SetActive(true);

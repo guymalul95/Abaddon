@@ -32,6 +32,7 @@ public class BulletCollision : MonoBehaviour
 
         switch(tag)
         {
+            case "enemy":
             case "metal": {
                 bulletImpactPrefab = bulletImpactPrefab_Metal;
                 break;
@@ -44,11 +45,6 @@ public class BulletCollision : MonoBehaviour
                 bulletImpactPrefab = bulletImpactPrefab_Concrete;
                 break;
             }
-            case "enemy":
-            {
-                bulletImpactPrefab = bulletImpactPrefab_Metal;
-                break;
-            }
             case "player":
                 return;
             default: {
@@ -57,7 +53,7 @@ public class BulletCollision : MonoBehaviour
             }
         }
 
-        GameObject impact = (GameObject) Instantiate(
+        GameObject impact = Instantiate(
                     bulletImpactPrefab,
                     rayhit.point,
                     Quaternion.LookRotation(rayhit.normal)
