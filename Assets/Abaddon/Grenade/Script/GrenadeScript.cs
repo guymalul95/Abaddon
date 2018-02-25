@@ -47,8 +47,16 @@ public class GrenadeScript : MonoBehaviour {
 		transform.position,
 		Quaternion.identity);
 
-        // TODO: Sphere Raycast for enemy layer / destroyable layer
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position, 3, Vector3.up);
 
-		Destroy(gameObject);
+        foreach (RaycastHit hit in hits)
+        {
+            if (!hit.collider.gameObject.CompareTag("Enemy")) break;
+
+            GameObject enemy = hit.collider.gameObject;
+            enemy.GetComponent<Target>().TakeDamage(50);
+        }
+
+        Destroy(gameObject);
     }
 }

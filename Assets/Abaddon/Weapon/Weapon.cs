@@ -163,6 +163,7 @@ public class Weapon : MonoBehaviour {
 
                     switch (tag)
                     {
+                        case "enemy":
                         case "metal":
                             {
                                 bulletImpactPrefab = bulletImpactPrefab_Metal;

@@ -13,6 +13,6 @@ public class EndGameScript : MonoBehaviour {
 
 		string gameScene = PlayerPrefs.GetString("MainGameScene");
 
-		SceneManager.LoadScene(gameScene);
+        SceneManager.LoadScene(gameScene);
 	}
 }
