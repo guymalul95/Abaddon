@@ -11,6 +11,7 @@ public class GrenadeScript : MonoBehaviour {
 	public GameObject ExplosionObjectPrefab;
 	public GrenadeType GrenadeType;
     public float GrenadeTimeMillis;
+    public float Radius;
 
 	// Use this for initialization
 	void Start () {
@@ -47,11 +48,11 @@ public class GrenadeScript : MonoBehaviour {
 		transform.position,
 		Quaternion.identity);
 
-        RaycastHit[] hits = Physics.SphereCastAll(transform.position, 3, Vector3.up);
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position, Radius, Vector3.up);
 
         foreach (RaycastHit hit in hits)
         {
-            if (!hit.collider.gameObject.CompareTag("Enemy")) break;
+            if (!hit.collider.gameObject.CompareTag("Enemy")) continue;
 
             GameObject enemy = hit.collider.gameObject;
             enemy.GetComponent<Target>().TakeDamage(50);

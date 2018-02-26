@@ -5,25 +5,30 @@ using UnityEngine.AI;
 [RequireComponent(typeof(ChasePlayerScript))]
 [RequireComponent(typeof(NavMeshAgent))]
 public class Target : MonoBehaviour {
-    public float health = 100f;
-
-    private Animator targetAnimator;
+    public float Health;
+    public int Power;
+    public TextMesh FloatTextMesh;
+    private Animator animator;
 
     void Start()
     {
-        targetAnimator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
+        FloatTextMesh.text = Health.ToString();
     }
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
-        
-        if (health <= 0)
+        Health -= damage;
+
+        if (Health <= 0)
+        {
+            Health = 0;
             Die();
+        }
         else
-            targetAnimator.SetTrigger("Damage");
+            animator.SetTrigger("Damage");
 
-
+        FloatTextMesh.text = (Health > 0 ) ? Health.ToString() : "DEAD";
         // Animation
     }
 
@@ -35,7 +40,7 @@ public class Target : MonoBehaviour {
 
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerState>().KilledEnemy();
 
-        targetAnimator.SetTrigger("Die");
-        Destroy(gameObject, 10.0f);
+        animator.SetTrigger("Die");
+        Destroy(gameObject, 5.0f);
     }
 }
