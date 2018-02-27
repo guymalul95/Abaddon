@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
-using System.Collections;
 
 enum ChaseState
 {
@@ -17,7 +16,7 @@ public class ChasePlayerScript : MonoBehaviour
     ChaseState state;
     private float AttackRange;
 
-    void Awake ()
+    void Start()
     {
         player = GameObject.FindGameObjectWithTag ("Player");
         enemyStats = GetComponent<Target>();

@@ -14,6 +14,7 @@ public class DoorTriggerScript : MonoBehaviour {
     private const string EnemyTag = "Enemy";
     public int MinimumScoreToActive;
     private LevelScript LevelScript;
+    public TextMesh ScoreText;
 
     // Use this for initialization
     void Start()
@@ -22,6 +23,7 @@ public class DoorTriggerScript : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         LevelScript = GetComponent<LevelScript>();
         audioSource.loop = false;
+        ScoreText.text = "SCORE  NEEDED TO  OPEN: " + MinimumScoreToActive.ToString();
     }
 
     void OnTriggerEnter(Collider other)
@@ -29,6 +31,8 @@ public class DoorTriggerScript : MonoBehaviour {
         // if minimum score is not meet then do not open
         if (!LevelScript.ShouldBeActive(MinimumScoreToActive))
             return;
+
+        ScoreText.text = "";
 
         switch (other.tag)
         {
@@ -49,7 +53,7 @@ public class DoorTriggerScript : MonoBehaviour {
         switch(other.tag)
         {
             case PlayerTag:
-            //case EnemyTag:
+            case EnemyTag:
                 break;
             default: return;
         }

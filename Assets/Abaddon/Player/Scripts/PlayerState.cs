@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class PlayerState : MonoBehaviour {
     internal int Score;
@@ -18,8 +19,17 @@ public class PlayerState : MonoBehaviour {
         IsAlive = true;
     }
 
+    public void HealthPower()
+    {
+        Health = 200;
+        UpdateGUI();
+    }
+
     public void TakeDamage(int damage)
     {
+        // Do not repeat death
+        if (Health <= 0) return;
+
         Health -= damage;
 
         if (Health <= 0)
@@ -44,8 +54,13 @@ public class PlayerState : MonoBehaviour {
 
     private void Die()
     {
+        Health = 0;
         IsAlive = false;
 
         // scream sound
+        var fpc = GetComponent<FirstPersonController>();
+
+        if (fpc != null)
+            fpc.enabled = false;
     }
 }

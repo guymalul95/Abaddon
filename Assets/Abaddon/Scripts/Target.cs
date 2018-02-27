@@ -4,6 +4,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(ChasePlayerScript))]
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(CapsuleCollider))]
 public class Target : MonoBehaviour {
     public float Health;
     public int Power;
@@ -20,29 +21,28 @@ public class Target : MonoBehaviour {
 
     public void TakeDamage(float damage)
     {
+        // prevent second time
+        if (Health <= 0) return;
+        
         Health -= damage;
 
         if (Health <= 0)
         {
             Health = 0;
-            Die();
+            FloatTextMesh.text = "DEAD";
+            animator.SetTrigger("Die");
+            PlayerState.KilledEnemy();
+            GetComponent<CapsuleCollider>().enabled = false;
         }
         else
+        {
             animator.SetTrigger("Damage");
-
-        FloatTextMesh.text = (Health > 0 ) ? Health.ToString() : "DEAD";
-        // Animation
+            FloatTextMesh.text = Health.ToString();
+        }
     }
 
     private void Die()
     {
-        GetComponent<ChasePlayerScript>().enabled = false;
-        GetComponent<NavMeshAgent>().enabled = false;
-        GetComponent<CapsuleCollider>().enabled = false;
-
-        PlayerState.KilledEnemy();
-
-        animator.SetTrigger("Die");
-        Destroy(gameObject, 5.0f);
+        gameObject.SetActive(false);
     }
 }

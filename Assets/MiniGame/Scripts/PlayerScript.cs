@@ -23,7 +23,6 @@ public class PlayerScript : MonoBehaviour {
 		Score = 0;
 		SetScore();
 		SetHealth();
-        PlayerPrefs.SetInt("MiniGamePlayed", 1);
     }
 
 	private void SetScore() 

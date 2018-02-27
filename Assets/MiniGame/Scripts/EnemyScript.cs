@@ -45,10 +45,10 @@ public class EnemyScript : MonoBehaviour {
 		HurtIndicatorAnim.SetTrigger("Hurt");
 
 		if(Health <= 0)
-			Explode();
+            Die();
 	}
 
-	private void Explode()
+	private void Die()
 	{
 		var playerScript = TargetPlayer.GetComponent<PlayerScript>();
 		playerScript.KilledEnemy();
@@ -58,6 +58,6 @@ public class EnemyScript : MonoBehaviour {
 		transform.position,
 		Quaternion.identity);
 
-		Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

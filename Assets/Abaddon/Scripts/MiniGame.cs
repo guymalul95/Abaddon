@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MiniGame : MonoBehaviour {
+    public GameObject ObstancleToRemove;
 
-	// Use this for initialization
-	void Start () {
-        PlayerPrefs.SetInt("MiniGamePlayed", 0);
-        PlayerPrefs.SetInt("MiniGameWon", 0);
+    // Use this for initialization
+    void Start () {
         PlayerPrefs.SetString("MainGameScene", SceneManager.GetActiveScene().name);
     }
 
@@ -22,6 +21,9 @@ public class MiniGame : MonoBehaviour {
             Scene mainScene = SceneManager.GetActiveScene();
 
             Destroy(gameObject);
+
+            if (ObstancleToRemove != null)
+                Destroy(ObstancleToRemove);
 
             foreach (GameObject obj in mainScene.GetRootGameObjects())
                 obj.SetActive(false);
