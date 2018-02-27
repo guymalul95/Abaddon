@@ -189,6 +189,12 @@ public class Weapon : MonoBehaviour {
                         target.TakeDamage(damage);
                     }
 
+                    Destructable destructable = hit.transform.GetComponent<Destructable>();
+                    if (destructable != null)
+                    {
+                        destructable.TakeDamage(damage);
+                    }
+
                     if (bulletImpactPrefab != null)
                     {
                         GameObject impact = Instantiate(bulletImpactPrefab, hit.point, Quaternion.LookRotation(hit.normal));
