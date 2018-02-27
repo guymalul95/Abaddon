@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum FireMode
 {
@@ -26,6 +27,7 @@ public class Weapon : MonoBehaviour {
     private FireMode chosenFireMode;
 
     public ParticleSystem muzzleFlashParticles;
+    public Text ClipText;
     
     public float minimumBulletSpread = 0.8f;
     public float maximumBulletSpread = 1.8f;
@@ -62,6 +64,8 @@ public class Weapon : MonoBehaviour {
         chosenFireMode = fireMode;
 
         bulletSpreadRatio = (maximumBulletSpread - minimumBulletSpread) * 0.1f;
+
+        UpdateGUI();
     }
 
     private void FixedUpdate()
@@ -205,6 +209,7 @@ public class Weapon : MonoBehaviour {
                 }
 
                 --currentRoundsInClip;
+                UpdateGUI();
             }
         }
     }
@@ -216,11 +221,17 @@ public class Weapon : MonoBehaviour {
         StartCoroutine(ReloadDone());
     }
 
+    void UpdateGUI()
+    {
+        ClipText.text = string.Format("{0} / {1}", currentRoundsInClip, maxRoundsInClip);
+    }
+
     IEnumerator ReloadDone()
     {
         yield return new WaitForSeconds(reloadTime);
         weaponEnabled = true;
         currentRoundsInClip = maxRoundsInClip;
         fireMode = chosenFireMode;
+        UpdateGUI();
     }
 }

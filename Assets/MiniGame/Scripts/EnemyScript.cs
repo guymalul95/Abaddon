@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Animator))]
 public class EnemyScript : MonoBehaviour {
@@ -15,7 +14,10 @@ public class EnemyScript : MonoBehaviour {
 	void Start() {
 		IsSleeping = false;
 		HurtIndicatorAnim = GetComponent<Animator>();
-	}
+
+        Scene minigameScene = SceneManager.GetSceneByName("MiniGame");
+        SceneManager.SetActiveScene(minigameScene);
+    }
 
 	public void SetTarget(GameObject target, float minDistance) 
 	{
@@ -43,10 +45,10 @@ public class EnemyScript : MonoBehaviour {
 		HurtIndicatorAnim.SetTrigger("Hurt");
 
 		if(Health <= 0)
-			Explode();
+            Die();
 	}
 
-	private void Explode()
+	private void Die()
 	{
 		var playerScript = TargetPlayer.GetComponent<PlayerScript>();
 		playerScript.KilledEnemy();
@@ -56,6 +58,6 @@ public class EnemyScript : MonoBehaviour {
 		transform.position,
 		Quaternion.identity);
 
-		Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

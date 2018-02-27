@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MiniGame : MonoBehaviour {
+    public GameObject ObstancleToRemove;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         PlayerPrefs.SetString("MainGameScene", SceneManager.GetActiveScene().name);
     }
 
@@ -16,8 +17,19 @@ public class MiniGame : MonoBehaviour {
 
         if(Input.GetButtonDown("Action"))
         {
-            // Switch to game
-            SceneManager.LoadScene("MiniGame",LoadSceneMode.Single);
+            // Switch to mini game
+            Scene mainScene = SceneManager.GetActiveScene();
+
+            Destroy(gameObject);
+
+            if (ObstancleToRemove != null)
+                Destroy(ObstancleToRemove);
+
+            foreach (GameObject obj in mainScene.GetRootGameObjects())
+                obj.SetActive(false);
+
+            // Load minigame
+            SceneManager.LoadScene("MiniGame", LoadSceneMode.Additive);
         }
     }
 }

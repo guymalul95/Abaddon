@@ -1,39 +1,68 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
-using System.Collections;
+
+enum ChaseState
+{
+    Chase,
+    Attack
+}
 
 public class ChasePlayerScript : MonoBehaviour
 {
-    Transform player;               // Reference to the player's position.
-    //PlayerHealth playerHealth;      // Reference to the player's health.
-    //EnemyHealth enemyHealth;        // Reference to this enemy's health.
-    NavMeshAgent nav;               // Reference to the nav mesh agent.
+    GameObject player;
+    Target enemyStats;
+    NavMeshAgent nav;
+    Animator animator;
+    ChaseState state;
+    private float AttackRange;
 
-
-    void Awake ()
+    void Start()
     {
-        // Set up the references.
-        player = GameObject.FindGameObjectWithTag ("Player").transform;
-        //playerHealth = player.GetComponent<PlayerHealth>();
-        //enemyHealth = GetComponent<EnemyHealth>();
+        player = GameObject.FindGameObjectWithTag ("Player");
+        enemyStats = GetComponent<Target>();
         nav = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        state = ChaseState.Chase;
+        AttackRange = nav.stoppingDistance;
     }
 
 
     void Update ()
     {
         // If the enemy and the player have health left...
-        /*if(enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
-        {
-            // ... set the destination of the nav mesh agent to the player.
-            nav.SetDestination (player.position);
-        }
-        // Otherwise...
-        else
+        if (enemyStats.Health == 0)
         {
             // ... disable the nav mesh agent.
             nav.enabled = false;
-        }*/
-		nav.SetDestination (player.position);
-    } 
+            return;
+        }
+
+        // Enemy is alive
+        if(state == ChaseState.Chase)
+            nav.SetDestination(player.transform.position);
+    }
+
+    float GetDistanceToPlayer()
+    {
+        Vector3 enemyGroundPos = new Vector3(transform.position.x, 0, transform.position.z);
+        Vector3 playerGroundPos = new Vector3(player.transform.position.x, 0, player.transform.position.z);
+        return Vector3.Distance(enemyGroundPos, playerGroundPos);
+    }
+
+    void FixedUpdate()
+    {
+        if (GetDistanceToPlayer() < AttackRange && state == ChaseState.Chase) {
+            state = ChaseState.Attack;
+            animator.SetTrigger("Attack");
+            
+        }
+    }
+
+    public void PostAttack()
+    {
+        state = ChaseState.Chase;
+
+        if (GetDistanceToPlayer() < AttackRange + 1.0f)
+            player.GetComponent<PlayerState>().TakeDamage(enemyStats.Power);
+    }
 }

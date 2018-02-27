@@ -23,11 +23,11 @@ public class PlayerScript : MonoBehaviour {
 		Score = 0;
 		SetScore();
 		SetHealth();
-	}
+    }
 
 	private void SetScore() 
 	{
-		ScoreText.text = "Score: " + Score;
+		ScoreText.text = "Score:  " + Score + " / " + ScoreToWin;
 	}
 
 	private void SetHealth()
@@ -49,6 +49,7 @@ public class PlayerScript : MonoBehaviour {
 			EndGameImage.sprite = GameOverSprite;
 			EndGameTextAnim.SetTrigger("Lose");
 			PlayerPrefs.SetInt("MiniGameWin",0);
+
 		}
 	}
 
