@@ -7,6 +7,8 @@ public class MiniGame : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        PlayerPrefs.SetInt("MiniGamePlayed", 0);
+        PlayerPrefs.SetInt("MiniGameWon", 0);
         PlayerPrefs.SetString("MainGameScene", SceneManager.GetActiveScene().name);
     }
 
@@ -16,8 +18,16 @@ public class MiniGame : MonoBehaviour {
 
         if(Input.GetButtonDown("Action"))
         {
-            // Switch to game
-            SceneManager.LoadScene("MiniGame",LoadSceneMode.Single);
+            // Switch to mini game
+            Scene mainScene = SceneManager.GetActiveScene();
+
+            Destroy(gameObject);
+
+            foreach (GameObject obj in mainScene.GetRootGameObjects())
+                obj.SetActive(false);
+
+            // Load minigame
+            SceneManager.LoadScene("MiniGame", LoadSceneMode.Additive);
         }
     }
 }

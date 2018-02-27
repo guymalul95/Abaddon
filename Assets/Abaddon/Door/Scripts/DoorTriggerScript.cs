@@ -4,25 +4,33 @@ using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(LevelScript))]
 public class DoorTriggerScript : MonoBehaviour {
     private Animator animator;
     private AudioSource audioSource;
     public AudioClip DoorOpenAudio;
     public AudioClip DoorCloseAudio;
-    private const string PlayerTag = "player";
-    private const string EnemyTag = "enemy";
+    private const string PlayerTag = "Player";
+    private const string EnemyTag = "Enemy";
+    public int MinimumScoreToActive;
+    private LevelScript LevelScript;
 
     // Use this for initialization
     void Start()
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        LevelScript = GetComponent<LevelScript>();
         audioSource.loop = false;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        switch(other.tag.ToLower())
+        // if minimum score is not meet then do not open
+        if (!LevelScript.ShouldBeActive(MinimumScoreToActive))
+            return;
+
+        switch (other.tag)
         {
             case PlayerTag:
             case EnemyTag:
@@ -38,10 +46,10 @@ public class DoorTriggerScript : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-        switch(other.tag.ToLower())
+        switch(other.tag)
         {
             case PlayerTag:
-            case EnemyTag:
+            //case EnemyTag:
                 break;
             default: return;
         }

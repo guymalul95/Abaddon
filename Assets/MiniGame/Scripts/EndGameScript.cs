@@ -5,14 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class EndGameScript : MonoBehaviour {
 
-	// Called from animator after text is displayed
-	public void EndGame()
+    void Start()
+    {
+        Scene minigameScene = SceneManager.GetSceneByName("MiniGame");
+        SceneManager.SetActiveScene(minigameScene);
+    }
+
+    // Called from animator after text is displayed
+    public void EndGame()
 	{
 		// Switch scene
-		Debug.Log("SCENE ENDED");
+		Debug.Log("MINIGAME ENDED");
 
 		string gameScene = PlayerPrefs.GetString("MainGameScene");
+        Scene mainScene = SceneManager.GetSceneByName(gameScene);
+        Scene minigameScene = SceneManager.GetSceneByName("MiniGame");
 
-        SceneManager.LoadScene(gameScene);
-	}
+        foreach (GameObject obj in minigameScene.GetRootGameObjects())
+        {
+            obj.SetActive(false);
+            if (null != obj)
+                Destroy(obj);
+        }
+
+        SceneManager.SetActiveScene(mainScene);
+
+        foreach (GameObject obj in mainScene.GetRootGameObjects())
+        {
+            if (null != obj)
+                obj.SetActive(true);
+        }
+    }
 }

@@ -9,11 +9,13 @@ public class Target : MonoBehaviour {
     public int Power;
     public TextMesh FloatTextMesh;
     private Animator animator;
+    private PlayerState PlayerState;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         FloatTextMesh.text = Health.ToString();
+        PlayerState = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerState>();
     }
 
     public void TakeDamage(float damage)
@@ -38,7 +40,7 @@ public class Target : MonoBehaviour {
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
 
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerState>().KilledEnemy();
+        PlayerState.KilledEnemy();
 
         animator.SetTrigger("Die");
         Destroy(gameObject, 5.0f);

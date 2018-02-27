@@ -4,16 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerState : MonoBehaviour {
-    int Score;
-    int Health;
+    internal int Score;
+    internal int Health;
     public Text ScoreText;
     public Text HealthText;
+    internal bool IsAlive;
 
     // Use this for initialization
     void Start () {
         Score = 0;
         Health = 100;
         UpdateGUI();
+        IsAlive = true;
     }
 
     public void TakeDamage(int damage)
@@ -42,6 +44,8 @@ public class PlayerState : MonoBehaviour {
 
     private void Die()
     {
+        IsAlive = false;
 
+        // scream sound
     }
 }
