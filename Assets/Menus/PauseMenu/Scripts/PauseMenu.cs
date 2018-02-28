@@ -2,20 +2,13 @@
 using UnityEngine.SceneManagement;
 using UnityStandardAssets.Characters.FirstPerson;
 
-[RequireComponent(typeof(Camera))]
 public class PauseMenu : MonoBehaviour {
 
     public static bool paused = false;
     public GameObject player;
     public GameObject pauseMenuUI;
     public AudioSource gameBackgroundMusic;
-    private Camera pauseCamera;
-
-    private void Start()
-    {
-        pauseCamera = GetComponent<Camera>();
-        pauseCamera.enabled = false;
-    }
+    public GameObject mainGui;
 
     // Update is called once per frame
     void Update () {
@@ -34,6 +27,7 @@ public class PauseMenu : MonoBehaviour {
 
     public void Resume()
     {
+        mainGui.SetActive(true);
         player.GetComponent<FirstPersonController>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -46,6 +40,7 @@ public class PauseMenu : MonoBehaviour {
 
     void Pause()
     {
+        mainGui.SetActive(false);
         player.GetComponent<FirstPersonController>().enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
