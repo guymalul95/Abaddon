@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.Characters.FirstPerson;
 
 [RequireComponent(typeof(Camera))]
 public class PauseMenu : MonoBehaviour {
@@ -33,8 +34,7 @@ public class PauseMenu : MonoBehaviour {
 
     public void Resume()
     {
-        player.SetActive(true);
-        pauseCamera.enabled = false;
+        player.GetComponent<FirstPersonController>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         pauseMenuUI.SetActive(false);
@@ -46,8 +46,7 @@ public class PauseMenu : MonoBehaviour {
 
     void Pause()
     {
-        player.SetActive(false);
-        pauseCamera.enabled = true;
+        player.GetComponent<FirstPersonController>().enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         pauseMenuUI.SetActive(true);
