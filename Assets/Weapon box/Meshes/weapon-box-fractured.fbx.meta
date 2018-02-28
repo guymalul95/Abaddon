@@ -1,0 +1,490 @@
+fileFormatVersion: 2
+guid: 891b5daf2870ffb4e9d4257b8e2ddbb5
+timeCreated: 1519820341
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Weapon box
+    100002: Weapon box_cell
+    100004: Weapon box_cell.001
+    100006: Weapon box_cell.002
+    100008: Weapon box_cell.003
+    100010: Weapon box_cell.004
+    100012: Weapon box_cell.005
+    100014: Weapon box_cell.006
+    100016: Weapon box_cell.007
+    100018: Weapon box_cell.008
+    100020: Weapon box_cell.009
+    100022: Weapon box_cell.010
+    100024: Weapon box_cell.011
+    100026: Weapon box_cell.012
+    100028: Weapon box_cell.013
+    100030: Weapon box_cell.014
+    100032: Weapon box_cell.015
+    100034: Weapon box_cell.016
+    100036: Weapon box_cell.017
+    100038: Weapon box_cell.018
+    100040: Weapon box_cell.019
+    100042: Weapon box_cell.020
+    100044: Weapon box_cell.021
+    100046: Weapon box_cell.022
+    100048: Weapon box_cell.023
+    100050: Weapon box_cell.024
+    100052: Weapon box_cell.025
+    100054: Weapon box_cell.026
+    100056: Weapon box_cell.027
+    100058: Weapon box_cell.028
+    100060: Weapon box_cell.029
+    100062: Weapon box_cell.030
+    100064: Weapon box_cell.031
+    100066: Weapon box_cell.032
+    100068: Weapon box_cell.033
+    100070: Weapon box_cell.034
+    100072: Weapon box_cell.035
+    100074: Weapon box_cell.036
+    100076: Weapon box_cell.037
+    100078: Weapon box_cell.038
+    100080: Weapon box_cell.039
+    100082: Weapon box_cell.040
+    100084: Weapon box_cell.041
+    100086: Weapon box_cell.042
+    100088: Weapon box_cell.043
+    100090: Weapon box_cell.044
+    100092: Weapon box_cell.045
+    100094: Weapon box_cell.046
+    100096: Weapon box_cell.047
+    100098: Weapon box_cell.048
+    100100: Weapon box_cell.049
+    100102: Weapon box_cell.050
+    100104: Weapon box_cell.051
+    100106: Weapon box_cell.052
+    100108: Weapon box_cell.053
+    100110: Weapon box_cell.054
+    100112: Weapon box_cell.055
+    100114: Weapon box_cell.056
+    100116: Weapon box_cell.057
+    100118: Weapon box_cell.058
+    100120: Weapon box_cell.059
+    100122: Weapon box_cell.060
+    100124: Weapon box_cell.061
+    100126: Weapon box_cell.062
+    100128: Weapon box_cell.063
+    100130: Weapon box_cell.064
+    100132: Weapon box_cell.065
+    100134: Weapon box_cell.066
+    100136: Weapon box_cell.067
+    100138: Weapon box_cell.068
+    100140: Weapon box_cell.069
+    100142: Weapon box_cell.070
+    100144: Weapon box_cell.071
+    100146: Weapon box_cell.072
+    100148: Weapon box_cell.073
+    100150: Weapon box_cell.074
+    100152: Weapon box_cell.075
+    100154: Weapon box_cell.076
+    100156: Weapon box_cell.077
+    100158: Weapon box_cell.078
+    100160: //RootNode
+    400000: Weapon box
+    400002: Weapon box_cell
+    400004: Weapon box_cell.001
+    400006: Weapon box_cell.002
+    400008: Weapon box_cell.003
+    400010: Weapon box_cell.004
+    400012: Weapon box_cell.005
+    400014: Weapon box_cell.006
+    400016: Weapon box_cell.007
+    400018: Weapon box_cell.008
+    400020: Weapon box_cell.009
+    400022: Weapon box_cell.010
+    400024: Weapon box_cell.011
+    400026: Weapon box_cell.012
+    400028: Weapon box_cell.013
+    400030: Weapon box_cell.014
+    400032: Weapon box_cell.015
+    400034: Weapon box_cell.016
+    400036: Weapon box_cell.017
+    400038: Weapon box_cell.018
+    400040: Weapon box_cell.019
+    400042: Weapon box_cell.020
+    400044: Weapon box_cell.021
+    400046: Weapon box_cell.022
+    400048: Weapon box_cell.023
+    400050: Weapon box_cell.024
+    400052: Weapon box_cell.025
+    400054: Weapon box_cell.026
+    400056: Weapon box_cell.027
+    400058: Weapon box_cell.028
+    400060: Weapon box_cell.029
+    400062: Weapon box_cell.030
+    400064: Weapon box_cell.031
+    400066: Weapon box_cell.032
+    400068: Weapon box_cell.033
+    400070: Weapon box_cell.034
+    400072: Weapon box_cell.035
+    400074: Weapon box_cell.036
+    400076: Weapon box_cell.037
+    400078: Weapon box_cell.038
+    400080: Weapon box_cell.039
+    400082: Weapon box_cell.040
+    400084: Weapon box_cell.041
+    400086: Weapon box_cell.042
+    400088: Weapon box_cell.043
+    400090: Weapon box_cell.044
+    400092: Weapon box_cell.045
+    400094: Weapon box_cell.046
+    400096: Weapon box_cell.047
+    400098: Weapon box_cell.048
+    400100: Weapon box_cell.049
+    400102: Weapon box_cell.050
+    400104: Weapon box_cell.051
+    400106: Weapon box_cell.052
+    400108: Weapon box_cell.053
+    400110: Weapon box_cell.054
+    400112: Weapon box_cell.055
+    400114: Weapon box_cell.056
+    400116: Weapon box_cell.057
+    400118: Weapon box_cell.058
+    400120: Weapon box_cell.059
+    400122: Weapon box_cell.060
+    400124: Weapon box_cell.061
+    400126: Weapon box_cell.062
+    400128: Weapon box_cell.063
+    400130: Weapon box_cell.064
+    400132: Weapon box_cell.065
+    400134: Weapon box_cell.066
+    400136: Weapon box_cell.067
+    400138: Weapon box_cell.068
+    400140: Weapon box_cell.069
+    400142: Weapon box_cell.070
+    400144: Weapon box_cell.071
+    400146: Weapon box_cell.072
+    400148: Weapon box_cell.073
+    400150: Weapon box_cell.074
+    400152: Weapon box_cell.075
+    400154: Weapon box_cell.076
+    400156: Weapon box_cell.077
+    400158: Weapon box_cell.078
+    400160: //RootNode
+    2100000: Weapon box
+    2300000: Weapon box
+    2300002: Weapon box_cell
+    2300004: Weapon box_cell.001
+    2300006: Weapon box_cell.002
+    2300008: Weapon box_cell.003
+    2300010: Weapon box_cell.004
+    2300012: Weapon box_cell.005
+    2300014: Weapon box_cell.006
+    2300016: Weapon box_cell.007
+    2300018: Weapon box_cell.008
+    2300020: Weapon box_cell.009
+    2300022: Weapon box_cell.010
+    2300024: Weapon box_cell.011
+    2300026: Weapon box_cell.012
+    2300028: Weapon box_cell.013
+    2300030: Weapon box_cell.014
+    2300032: Weapon box_cell.015
+    2300034: Weapon box_cell.016
+    2300036: Weapon box_cell.017
+    2300038: Weapon box_cell.018
+    2300040: Weapon box_cell.019
+    2300042: Weapon box_cell.020
+    2300044: Weapon box_cell.021
+    2300046: Weapon box_cell.022
+    2300048: Weapon box_cell.023
+    2300050: Weapon box_cell.024
+    2300052: Weapon box_cell.025
+    2300054: Weapon box_cell.026
+    2300056: Weapon box_cell.027
+    2300058: Weapon box_cell.028
+    2300060: Weapon box_cell.029
+    2300062: Weapon box_cell.030
+    2300064: Weapon box_cell.031
+    2300066: Weapon box_cell.032
+    2300068: Weapon box_cell.033
+    2300070: Weapon box_cell.034
+    2300072: Weapon box_cell.035
+    2300074: Weapon box_cell.036
+    2300076: Weapon box_cell.037
+    2300078: Weapon box_cell.038
+    2300080: Weapon box_cell.039
+    2300082: Weapon box_cell.040
+    2300084: Weapon box_cell.041
+    2300086: Weapon box_cell.042
+    2300088: Weapon box_cell.043
+    2300090: Weapon box_cell.044
+    2300092: Weapon box_cell.045
+    2300094: Weapon box_cell.046
+    2300096: Weapon box_cell.047
+    2300098: Weapon box_cell.048
+    2300100: Weapon box_cell.049
+    2300102: Weapon box_cell.050
+    2300104: Weapon box_cell.051
+    2300106: Weapon box_cell.052
+    2300108: Weapon box_cell.053
+    2300110: Weapon box_cell.054
+    2300112: Weapon box_cell.055
+    2300114: Weapon box_cell.056
+    2300116: Weapon box_cell.057
+    2300118: Weapon box_cell.058
+    2300120: Weapon box_cell.059
+    2300122: Weapon box_cell.060
+    2300124: Weapon box_cell.061
+    2300126: Weapon box_cell.062
+    2300128: Weapon box_cell.063
+    2300130: Weapon box_cell.064
+    2300132: Weapon box_cell.065
+    2300134: Weapon box_cell.066
+    2300136: Weapon box_cell.067
+    2300138: Weapon box_cell.068
+    2300140: Weapon box_cell.069
+    2300142: Weapon box_cell.070
+    2300144: Weapon box_cell.071
+    2300146: Weapon box_cell.072
+    2300148: Weapon box_cell.073
+    2300150: Weapon box_cell.074
+    2300152: Weapon box_cell.075
+    2300154: Weapon box_cell.076
+    2300156: Weapon box_cell.077
+    2300158: Weapon box_cell.078
+    3300000: Weapon box
+    3300002: Weapon box_cell
+    3300004: Weapon box_cell.001
+    3300006: Weapon box_cell.002
+    3300008: Weapon box_cell.003
+    3300010: Weapon box_cell.004
+    3300012: Weapon box_cell.005
+    3300014: Weapon box_cell.006
+    3300016: Weapon box_cell.007
+    3300018: Weapon box_cell.008
+    3300020: Weapon box_cell.009
+    3300022: Weapon box_cell.010
+    3300024: Weapon box_cell.011
+    3300026: Weapon box_cell.012
+    3300028: Weapon box_cell.013
+    3300030: Weapon box_cell.014
+    3300032: Weapon box_cell.015
+    3300034: Weapon box_cell.016
+    3300036: Weapon box_cell.017
+    3300038: Weapon box_cell.018
+    3300040: Weapon box_cell.019
+    3300042: Weapon box_cell.020
+    3300044: Weapon box_cell.021
+    3300046: Weapon box_cell.022
+    3300048: Weapon box_cell.023
+    3300050: Weapon box_cell.024
+    3300052: Weapon box_cell.025
+    3300054: Weapon box_cell.026
+    3300056: Weapon box_cell.027
+    3300058: Weapon box_cell.028
+    3300060: Weapon box_cell.029
+    3300062: Weapon box_cell.030
+    3300064: Weapon box_cell.031
+    3300066: Weapon box_cell.032
+    3300068: Weapon box_cell.033
+    3300070: Weapon box_cell.034
+    3300072: Weapon box_cell.035
+    3300074: Weapon box_cell.036
+    3300076: Weapon box_cell.037
+    3300078: Weapon box_cell.038
+    3300080: Weapon box_cell.039
+    3300082: Weapon box_cell.040
+    3300084: Weapon box_cell.041
+    3300086: Weapon box_cell.042
+    3300088: Weapon box_cell.043
+    3300090: Weapon box_cell.044
+    3300092: Weapon box_cell.045
+    3300094: Weapon box_cell.046
+    3300096: Weapon box_cell.047
+    3300098: Weapon box_cell.048
+    3300100: Weapon box_cell.049
+    3300102: Weapon box_cell.050
+    3300104: Weapon box_cell.051
+    3300106: Weapon box_cell.052
+    3300108: Weapon box_cell.053
+    3300110: Weapon box_cell.054
+    3300112: Weapon box_cell.055
+    3300114: Weapon box_cell.056
+    3300116: Weapon box_cell.057
+    3300118: Weapon box_cell.058
+    3300120: Weapon box_cell.059
+    3300122: Weapon box_cell.060
+    3300124: Weapon box_cell.061
+    3300126: Weapon box_cell.062
+    3300128: Weapon box_cell.063
+    3300130: Weapon box_cell.064
+    3300132: Weapon box_cell.065
+    3300134: Weapon box_cell.066
+    3300136: Weapon box_cell.067
+    3300138: Weapon box_cell.068
+    3300140: Weapon box_cell.069
+    3300142: Weapon box_cell.070
+    3300144: Weapon box_cell.071
+    3300146: Weapon box_cell.072
+    3300148: Weapon box_cell.073
+    3300150: Weapon box_cell.074
+    3300152: Weapon box_cell.075
+    3300154: Weapon box_cell.076
+    3300156: Weapon box_cell.077
+    3300158: Weapon box_cell.078
+    4300000: Weapon box_cell.078
+    4300002: Weapon box_cell.077
+    4300004: Weapon box_cell.076
+    4300006: Weapon box_cell.075
+    4300008: Weapon box_cell.074
+    4300010: Weapon box_cell.073
+    4300012: Weapon box_cell.072
+    4300014: Weapon box_cell.071
+    4300016: Weapon box_cell.070
+    4300018: Weapon box_cell.069
+    4300020: Weapon box_cell.068
+    4300022: Weapon box_cell.067
+    4300024: Weapon box_cell.066
+    4300026: Weapon box_cell.065
+    4300028: Weapon box_cell.064
+    4300030: Weapon box_cell.063
+    4300032: Weapon box_cell.062
+    4300034: Weapon box_cell.061
+    4300036: Weapon box_cell.060
+    4300038: Weapon box_cell.059
+    4300040: Weapon box_cell.058
+    4300042: Weapon box_cell.057
+    4300044: Weapon box_cell.056
+    4300046: Weapon box_cell.055
+    4300048: Weapon box_cell.054
+    4300050: Weapon box_cell.053
+    4300052: Weapon box_cell.052
+    4300054: Weapon box_cell.051
+    4300056: Weapon box_cell.050
+    4300058: Weapon box_cell.049
+    4300060: Weapon box_cell.048
+    4300062: Weapon box_cell.047
+    4300064: Weapon box_cell.046
+    4300066: Weapon box_cell.045
+    4300068: Weapon box_cell.044
+    4300070: Weapon box_cell.043
+    4300072: Weapon box_cell.042
+    4300074: Weapon box_cell.041
+    4300076: Weapon box_cell.040
+    4300078: Weapon box_cell.039
+    4300080: Weapon box_cell.038
+    4300082: Weapon box_cell.037
+    4300084: Weapon box_cell.036
+    4300086: Weapon box_cell.035
+    4300088: Weapon box_cell.034
+    4300090: Weapon box_cell.033
+    4300092: Weapon box_cell.032
+    4300094: Weapon box_cell.031
+    4300096: Weapon box_cell.030
+    4300098: Weapon box_cell.029
+    4300100: Weapon box_cell.028
+    4300102: Weapon box_cell.027
+    4300104: Weapon box_cell.026
+    4300106: Weapon box_cell.025
+    4300108: Weapon box_cell.024
+    4300110: Weapon box_cell.023
+    4300112: Weapon box_cell.022
+    4300114: Weapon box_cell.021
+    4300116: Weapon box_cell.020
+    4300118: Weapon box_cell.019
+    4300120: Weapon box_cell.018
+    4300122: Weapon box_cell.017
+    4300124: Weapon box_cell.016
+    4300126: Weapon box_cell.015
+    4300128: Weapon box_cell.014
+    4300130: Weapon box_cell.013
+    4300132: Weapon box_cell.012
+    4300134: Weapon box_cell.011
+    4300136: Weapon box_cell.010
+    4300138: Weapon box_cell.009
+    4300140: Weapon box_cell.008
+    4300142: Weapon box_cell.007
+    4300144: Weapon box_cell.006
+    4300146: Weapon box_cell.005
+    4300148: Weapon box_cell.004
+    4300150: Weapon box_cell.003
+    4300152: Weapon box_cell.002
+    4300154: Weapon box_cell.001
+    4300156: Weapon box_cell
+    4300158: Weapon box
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

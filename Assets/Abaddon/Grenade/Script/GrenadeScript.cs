@@ -52,10 +52,16 @@ public class GrenadeScript : MonoBehaviour {
 
         foreach (RaycastHit hit in hits)
         {
-            if (!hit.collider.gameObject.CompareTag("Enemy")) continue;
-
-            GameObject enemy = hit.collider.gameObject;
-            enemy.GetComponent<Target>().TakeDamage(50);
+            if (hit.collider.gameObject.CompareTag("Enemy"))
+            {
+                GameObject enemy = hit.collider.gameObject;
+                enemy.GetComponent<Target>().TakeDamage(50);
+            }
+            else if (hit.collider.gameObject.CompareTag("MetalBox"))
+            {
+                GameObject enemy = hit.collider.gameObject;
+                enemy.GetComponent<Destructible>().TakeDamage(50);
+            }
         }
 
         Destroy(gameObject);

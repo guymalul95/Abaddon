@@ -1,14 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
 
+[RequireComponent(typeof(AudioSource))]
 public class PlayerState : MonoBehaviour {
     internal int Score;
     internal int Health;
     public Text ScoreText;
     public Text HealthText;
+    public Text GameMessageText;
+    public AudioSource TakeDamageAudioPlayer;
+    public AudioSource DieAudioPlayer;
     internal bool IsAlive;
 
     // Use this for initialization
@@ -17,6 +22,16 @@ public class PlayerState : MonoBehaviour {
         Health = 100;
         UpdateGUI();
         IsAlive = true;
+
+        var audioSources = GetComponents<AudioSource>();
+
+        TakeDamageAudioPlayer = audioSources[1];
+        TakeDamageAudioPlayer.loop = false;
+        TakeDamageAudioPlayer.playOnAwake = false;
+
+        DieAudioPlayer = audioSources[2];
+        DieAudioPlayer.loop = false;
+        DieAudioPlayer.playOnAwake = false;
     }
 
     public void HealthPower()
@@ -33,7 +48,13 @@ public class PlayerState : MonoBehaviour {
         Health -= damage;
 
         if (Health <= 0)
+        {
             Die();
+        }
+        else
+        {
+            TakeDamageAudioPlayer.Play();
+        }
 
         UpdateGUI();
         // TODO: Make ouch sound
@@ -52,15 +73,46 @@ public class PlayerState : MonoBehaviour {
         UpdateGUI();
     }
 
+    public void BonusPoints(int score)
+    {
+        Score += score;
+
+        UpdateGUI();
+    }
+
     private void Die()
     {
         Health = 0;
         IsAlive = false;
+        DieAudioPlayer.Play();
+        GameMessageText.text = "YOU DIED";
 
-        // scream sound
         var fpc = GetComponent<FirstPersonController>();
 
         if (fpc != null)
             fpc.enabled = false;
+
+        Time.timeScale = 0.5f;
+        Invoke("Reset", 2);
+    }
+
+    public void Win()
+    {
+        GameMessageText.text = "YOU WIN";
+
+        var fpc = GetComponent<FirstPersonController>();
+
+        if (fpc != null)
+            fpc.enabled = false;
+
+        Time.timeScale = 0.5f;
+        Invoke("Reset", 2);
+    }
+
+    private void Reset()
+    {
+        GameMessageText.text = "";
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
 }

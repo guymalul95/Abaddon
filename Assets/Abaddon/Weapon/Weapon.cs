@@ -9,8 +9,6 @@ public enum FireMode
 }
 
 [RequireComponent(typeof(AudioSource))]
-[RequireComponent(typeof(AudioSource))]
-[RequireComponent(typeof(AudioSource))]
 public class Weapon : MonoBehaviour {
 
     public float damage = 10f;
@@ -37,6 +35,7 @@ public class Weapon : MonoBehaviour {
     private AudioSource shootAudioPlayer;
     private AudioSource emptyAudioPlayer;
     private AudioSource reloadAudioPlayer;
+    private AudioSource metalHitAudioPlayer;
 
     public GameObject bulletImpactPrefab_Metal;
     public GameObject bulletImpactPrefab_Wood;
@@ -53,12 +52,19 @@ public class Weapon : MonoBehaviour {
 
         shootAudioPlayer = audioSources[0];
         shootAudioPlayer.loop = false;
+        shootAudioPlayer.playOnAwake = false;
 
         emptyAudioPlayer = audioSources[1];
         emptyAudioPlayer.loop = false;
+        emptyAudioPlayer.playOnAwake = false;
 
         reloadAudioPlayer = audioSources[2];
         reloadAudioPlayer.loop = false;
+        reloadAudioPlayer.playOnAwake = false;
+
+        metalHitAudioPlayer = audioSources[3];
+        metalHitAudioPlayer.loop = false;
+        metalHitAudioPlayer.playOnAwake = false;
 
         currentRoundsInClip = maxRoundsInClip;
         chosenFireMode = fireMode;
@@ -164,12 +170,15 @@ public class Weapon : MonoBehaviour {
                 {
                     GameObject bulletImpactPrefab = null;
                     string tag = hit.collider.gameObject.tag.ToLower();
+                    bool metal = false;
 
                     switch (tag)
                     {
                         case "enemy":
                         case "metal":
+                        case "metalbox":
                             {
+                                metal = true;
                                 bulletImpactPrefab = bulletImpactPrefab_Metal;
                                 break;
                             }
@@ -193,14 +202,18 @@ public class Weapon : MonoBehaviour {
                         target.TakeDamage(damage);
                     }
 
-                    Destructable destructable = hit.transform.GetComponent<Destructable>();
-                    if (destructable != null)
+                    Destructible destructible = hit.transform.GetComponent<Destructible>();
+                    if (destructible != null)
                     {
-                        destructable.TakeDamage(damage);
+                        destructible.TakeDamage(damage);
                     }
 
                     if (bulletImpactPrefab != null)
                     {
+                        if (metal)
+                        {
+                            metalHitAudioPlayer.Play();
+                        }
                         GameObject impact = Instantiate(bulletImpactPrefab, hit.point, Quaternion.LookRotation(hit.normal));
                         impact.transform.parent = hit.collider.transform;
 
