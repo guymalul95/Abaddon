@@ -29,6 +29,7 @@ public class PauseMenu : MonoBehaviour {
     {
         mainGui.SetActive(true);
         player.GetComponent<FirstPersonController>().enabled = true;
+        player.GetComponentInChildren<Weapon>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         pauseMenuUI.SetActive(false);
@@ -42,6 +43,7 @@ public class PauseMenu : MonoBehaviour {
     {
         mainGui.SetActive(false);
         player.GetComponent<FirstPersonController>().enabled = false;
+        player.GetComponentInChildren<Weapon>().enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         pauseMenuUI.SetActive(true);
