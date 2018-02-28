@@ -216,9 +216,12 @@ public class Weapon : MonoBehaviour {
 
     void Reload()
     {
-        weaponEnabled = false;
-        reloadAudioPlayer.Play();
-        StartCoroutine(ReloadDone());
+        if (weaponEnabled && currentRoundsInClip < maxRoundsInClip)
+        {
+            weaponEnabled = false;
+            reloadAudioPlayer.Play();
+            StartCoroutine(ReloadDone());
+        }
     }
 
     void UpdateGUI()
