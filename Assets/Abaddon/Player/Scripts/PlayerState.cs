@@ -16,6 +16,18 @@ public class PlayerState : MonoBehaviour {
     public AudioSource DieAudioPlayer;
     internal bool IsAlive;
 
+    private void OnEnable()
+    {
+        int miniGameStatus = PlayerPrefs.GetInt("MiniGameWin");
+        
+        if (miniGameStatus == 1)
+        {
+            Score += 1000;
+
+            UpdateGUI();
+        }
+    }
+
     // Use this for initialization
     void Start () {
         Score = 0;
